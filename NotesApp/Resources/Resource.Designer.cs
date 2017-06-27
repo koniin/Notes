@@ -57,6 +57,28 @@ namespace NotesApp
 			}
 		}
 		
+		public partial class Id
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int buttonSave = 2131034112;
+			
+			// aapt resource value: 0x7f050002
+			public const int noteText = 2131034114;
+			
+			// aapt resource value: 0x7f050001
+			public const int topicText = 2131034113;
+			
+			static Id()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Id()
+			{
+			}
+		}
+		
 		public partial class Layout
 		{
 			
@@ -81,6 +103,12 @@ namespace NotesApp
 			
 			// aapt resource value: 0x7f040000
 			public const int Hello = 2130968576;
+			
+			// aapt resource value: 0x7f040003
+			public const int noteTextPlaceHolder = 2130968579;
+			
+			// aapt resource value: 0x7f040002
+			public const int topicTextPlaceHolder = 2130968578;
 			
 			static String()
 			{
