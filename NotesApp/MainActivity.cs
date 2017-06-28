@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
+using System;
+using System.Linq;
 
 namespace NotesApp
 {
@@ -12,21 +14,36 @@ namespace NotesApp
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
-            SetContentView (Resource.Layout.Main);
+            SetContentView(Resource.Layout.Main);
 
             EditText topicText = FindViewById<EditText>(Resource.Id.topicText);
             topicText.SetHint(Resource.String.topicTextPlaceHolder);
             EditText noteText = FindViewById<EditText>(Resource.Id.noteText);
             noteText.SetHint(Resource.String.noteTextPlaceHolder);
 
+            var db = new Db();
+            db.Init();
+
             var saveButton = FindViewById<Button>(Resource.Id.buttonSave);
             saveButton.Click += (object sender, System.EventArgs e) =>
             {
                 var msg = topicText.Text + "\n" + noteText.Text;
                 Toast.MakeText(ApplicationContext, msg, ToastLength.Long).Show();
+                db.Save(new Note()
+                {
+                    CreateDate = DateTime.Now,
+                    Topic = topicText.Text,
+                    Text = noteText.Text
+                });
             };
 
-            
+            var tbtn = FindViewById<Button>(Resource.Id.button1);
+            tbtn.Click += async (object sender, System.EventArgs e) =>
+            {
+                var notes = await db.List();
+                var firstNote = notes.First();
+                Toast.MakeText(ApplicationContext, firstNote.Topic + "\n" + firstNote.Text, ToastLength.Long).Show();
+            };
         }
     }
 }

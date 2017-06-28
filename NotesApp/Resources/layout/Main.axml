@@ -4,11 +4,6 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:padding="10dp">
-    <Button
-        android:text="Save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonSave" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,4 +16,14 @@
         android:paddingTop="10dp"
         android:layout_marginTop="10dp"
         android:id="@+id/noteText" />
+    <Button
+        android:text="Save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonSave" />
+    <Button
+        android:text="Test load from db"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button1" />
 </LinearLayout>
