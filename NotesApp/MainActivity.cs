@@ -3,6 +3,7 @@ using Android.Widget;
 using Android.OS;
 using System;
 using System.Linq;
+using Android.Content;
 
 namespace NotesApp
 {
@@ -24,6 +25,14 @@ namespace NotesApp
             var db = new Db();
             db.Init();
 
+            var listButton = FindViewById<Button>(Resource.Id.buttonList);
+            listButton.Click += (object sender, System.EventArgs e) =>
+            {
+                var intent = new Intent(this, typeof(NoteList));
+                //intent.PutStringArrayListExtra("phone_numbers", phoneNumbers);
+                StartActivity(intent);
+            };
+
             var saveButton = FindViewById<Button>(Resource.Id.buttonSave);
             saveButton.Click += (object sender, System.EventArgs e) =>
             {
@@ -42,7 +51,16 @@ namespace NotesApp
             {
                 var notes = await db.List();
                 var firstNote = notes.First();
-                Toast.MakeText(ApplicationContext, firstNote.Topic + "\n" + firstNote.Text, ToastLength.Long).Show();
+                db.Delete(firstNote);
+                notes = await db.List();
+                var tmp = string.Empty;
+                foreach (var note in notes)
+                {
+                    tmp += note.ID + ", ";
+                }
+                
+                //Toast.MakeText(ApplicationContext, firstNote.Topic + "\n" + firstNote.Text, ToastLength.Long).Show();
+                Toast.MakeText(ApplicationContext, tmp, ToastLength.Long).Show();
             };
         }
     }

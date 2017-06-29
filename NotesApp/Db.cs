@@ -37,5 +37,10 @@ namespace NotesApp
         {
             return await _sqlLiteConnector.All();
         }
+
+        public void Delete(Note note)
+        {
+            _sqlLiteConnector.Delete(note);
+        }
     }
 }

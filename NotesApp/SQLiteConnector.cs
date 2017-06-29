@@ -43,5 +43,10 @@ namespace NotesApp
         {
             return await _connection.Table<Note>().ToListAsync();
         }
+
+        public void Delete(Note note)
+        {
+            _connection.DeleteAsync(note);
+        }
     }
 }
