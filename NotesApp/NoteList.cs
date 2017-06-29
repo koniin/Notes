@@ -41,5 +41,11 @@ namespace NotesApp
             
             ListAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, items);
         }
+
+        protected override void OnListItemClick(ListView l, View v, int position, long id)
+        {
+            var i = (string)l.GetItemAtPosition(position);
+            Toast.MakeText(this, i, ToastLength.Short).Show();
+        }
     }
 }
